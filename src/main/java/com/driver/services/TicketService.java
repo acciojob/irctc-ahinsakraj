@@ -93,7 +93,7 @@ public class TicketService {
         ticket.setTotalFare(fare*bookTicketEntryDto.getNoOfSeats());
 
         Optional<Passenger> bookingPassengerOptional = passengerRepository.findById(bookTicketEntryDto.getBookingPersonId());
-        if(bookingPassengerOptional.get()==null){
+        if(!bookingPassengerOptional.isPresent()){
             throw new Exception("Passenger not found");
         }
         Ticket savedTicket = ticketRepository.save(ticket);
