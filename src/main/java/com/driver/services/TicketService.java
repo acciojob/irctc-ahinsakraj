@@ -82,7 +82,7 @@ public class TicketService {
         Ticket ticket = new Ticket();
         for(Integer passengerId: bookTicketEntryDto.getPassengerIds()){
             Optional<Passenger> passengerOptional = passengerRepository.findById(passengerId);
-            if(passengerOptional.get()==null){
+            if(!passengerOptional.isPresent()){
                 throw new Exception("Passenger not found");
             }
             ticket.getPassengersList().add(passengerOptional.get());
