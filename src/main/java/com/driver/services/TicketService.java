@@ -43,7 +43,7 @@ public class TicketService {
         //Also in the passenger Entity change the attribute bookedTickets by using the attribute bookingPersonId.
         //And the end return the ticketId that has come from db
         Optional<Train> trainOptional = trainRepository.findById(bookTicketEntryDto.getTrainId());
-        if(trainOptional.get()==null){
+        if(!trainOptional.isPresent()) {
             throw new Exception("Train Not Found");
         }
         Train train = trainOptional.get();
